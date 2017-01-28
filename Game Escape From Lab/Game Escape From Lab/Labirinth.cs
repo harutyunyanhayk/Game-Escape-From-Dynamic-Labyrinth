@@ -95,18 +95,8 @@ namespace Game_Escape_From_Lab
                 }
 
             }
-
-            Console.WriteLine();
-
-
+            
             return new int[] { indexI, indexJ };
-        }
-
-        public override string ToString()
-        {
-            //Console.SetCursorPosition(0, y + 1);
-
-            return $"Matrix[{indexI},{indexJ}]\n";
         }
     }
 }
