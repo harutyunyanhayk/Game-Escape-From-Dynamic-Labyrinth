@@ -10,6 +10,14 @@ namespace Game_Escape_From_Lab
     {
         static void Main(string[] args)
         {
+            Labirinth lb = new Labirinth(LabirinthSize.Small);
+
+
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine(String.Join(", ", lb.DrowLabirinth()));
+                Console.WriteLine();
+            }
         }
     }
 }

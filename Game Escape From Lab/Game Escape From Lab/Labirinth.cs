@@ -11,6 +11,9 @@ namespace Game_Escape_From_Lab
         public int[,] matrix;
         private int x;
         private int y;
+        private bool isFree = false;
+        int indexI = -1;
+        int indexJ = -1;
 
         // constructor
         public Labirinth(LabirinthSize S)
@@ -38,6 +41,11 @@ namespace Game_Escape_From_Lab
 
             matrix = new int[x, y];
 
+            InitMatrix();
+        }
+
+        private void InitMatrix()
+        {
             Random rd = new Random();
             int rdx = rd.Next(1, x - 1);
             int rdy = rd.Next(1, y - 1) % 2 == 1 ? rd.Next(1, y) : rd.Next(1, y) + 1;
@@ -46,7 +54,12 @@ namespace Game_Escape_From_Lab
             {
                 for (int j = 0; j < y; j++)
                 {
-                    if (i == rdx && j == rdy) continue;
+                    if (i == rdx && j == rdy)
+                    {
+                        indexI = i;
+                        indexJ = j;
+                        continue;
+                    }
                     if (i == 0 || i == x - 1)
                     {
                         matrix[i, j] = 2;
@@ -56,12 +69,11 @@ namespace Game_Escape_From_Lab
                         if (j % 2 == 0) matrix[i, j] = 1;
                     }
                 }
-
             }
         }
 
         // Plotter
-        public void DrowLabirinth()
+        public int[] DrowLabirinth()
         {
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
@@ -81,8 +93,20 @@ namespace Game_Escape_From_Lab
                         Console.Write(' ');
                     }
                 }
+
             }
 
+            Console.WriteLine();
+
+
+            return new int[] { indexI, indexJ };
+        }
+
+        public override string ToString()
+        {
+            //Console.SetCursorPosition(0, y + 1);
+
+            return $"Matrix[{indexI},{indexJ}]\n";
         }
     }
 }
